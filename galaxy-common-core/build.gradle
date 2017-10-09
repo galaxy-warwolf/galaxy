@@ -1,0 +1,14 @@
+dependencies {
+  compile("com.google.guava:guava:${versions.guava}")
+  compile("ma.glasnost.orika:orika-core:${versions.orika}")
+  compile("org.quartz-scheduler:quartz:${versions.quartz}")
+  compile("com.google.zxing:core")
+  compile("org.apache.velocity:velocity-engine-core")
+  compile("org.springframework.boot:spring-boot-autoconfigure")
+  compile("org.springframework:spring-context")
+  compile("org.springframework:spring-context-support")
+  compile("org.springframework.boot:spring-boot-starter-aop")
+  compile("org.springframework.boot:spring-boot-devtools")
+//  compile("commons-io:commons-io")
+//  compile("org.apache.commons:commons-lang3")
+}

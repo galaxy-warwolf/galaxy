@@ -1,0 +1,10 @@
+rootProject.name = 'galaxy'
+
+include 'galaxy-common-core'
+include 'galaxy-common-persistence'
+include 'galaxy-common-web'
+include 'galaxy-migration'
+include 'galaxy-auth'
+include 'galaxy-activiti'
+include 'galaxy-sys'
+include 'galaxy-app'

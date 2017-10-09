@@ -1,0 +1,10 @@
+<code_scheme name="galaxy">
+  <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="50" />
+  <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="30" />
+  <MarkdownNavigatorCodeStyleSettings>
+    <option name="RIGHT_MARGIN" value="72" />
+  </MarkdownNavigatorCodeStyleSettings>
+  <codeStyleSettings language="JAVA">
+    <option name="BLANK_LINES_BEFORE_PACKAGE" value="1" />
+  </codeStyleSettings>
+</code_scheme>

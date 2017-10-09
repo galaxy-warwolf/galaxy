@@ -1,0 +1,147 @@
+# spring configuration
+spring:
+  profiles:
+    active: dev
+  jackson:
+    time-zone: Asia/Shanghai
+    default-property-inclusion: non_null
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  aop:
+    proxy-target-class: true
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/galaxy?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      validation-query-timeout: 5
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#      use-global-data-source-stat: true
+      web-stat-filter:
+        enabled:  true
+        url-pattern:  /*
+        exclusions: '/webjars*,/swagger-resources*,*/api-docs,*.html,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+        session-stat-enable:  false
+      stat-view-servlet:
+        enabled:  true
+        url-pattern:  /druid/*
+        reset-enable: false
+        login-username: druid
+        login-password: druid
+        allow:  127.0.0.1
+#        deny:
+#      aop-patterns:
+  redis:
+    host: localhost
+    port: 6379
+    pool:
+      max-idle: 8
+      min-idle: 1
+      max-active: 8
+      max-wait: -1
+  cache:
+    type: redis
+
+# quartz configuration
+quartz:
+  enabled: false
+
+# swagger configuration
+swagger:
+  enabled: true
+
+# shiro configuration
+shiro:
+  enabled: true
+  jwt:
+    enabled: true
+    secret: galaxy
+    refresh-secret: galaxy
+    expires-in-second: 36000
+    refresh-expires-in-second: 360000
+  annotations:
+    enabled: true
+  chains:
+    - /api/auth/*=jwt
+  filter-url-patterns:
+    - /api/*
+
+# mybatis configuration
+mybatis-plus:
+  mapper-locations:
+    - classpath:/mybatis/*.xml
+  # delimiter use , or ;
+  typeAliasesPackage: com.thewolf.galaxy.sys.model
+  global-config:
+    # 0) AUTO 1) INPUT 2) ID_WORKER 3) UUID
+    id-type: 2
+    # 0) IGNORED 1) NOT_NULL 2) NOT_EMPTY
+    field-strategy: 2
+    db-column-underline: true
+    refresh-mapper: false
+    meta-object-handler: com.thewolf.galaxy.common.persistence.plugin.AuditObjectHandler
+#    capital-mode: true
+#    logic-delete-value: 0
+#    logic-not-delete-value: 1
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+# system configuration
+server:
+  port: 8080
+  contextPath: /
+endpoints:
+  health:
+    sensitive: false
+management:
+  health:
+    diskspace:
+      enabled: true
+  security:
+    enabled: false
+
+---
+spring:
+  profiles: dev
+
+mybatis-plus:
+  global-config:
+    refresh-mapper: true
+
+logging:
+  level:
+    com.thewolf.galaxy: DEBUG
+
+---
+spring:
+  profiles: ci
+
+logging:
+  level:
+    com.thewolf.galaxy: INFO
+
+---
+spring:
+  profiles: prod
+
+swagger:
+  enabled: false
+
+logging:
+  level:
+    com.thewolf.galaxy: WARN

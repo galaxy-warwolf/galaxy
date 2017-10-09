@@ -1,0 +1,18 @@
+subprojects {
+
+    apply plugin: 'jacoco'
+
+    test {
+        jacoco {
+            includes = [ "com.thewolf.galaxy.*" ]
+        }
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled false
+            csv.enabled false
+        }
+    }
+
+}

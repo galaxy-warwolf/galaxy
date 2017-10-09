@@ -1,0 +1,4 @@
+dependencies {
+  compile project(':galaxy-common-persistence')
+  compile project(':galaxy-auth')
+}

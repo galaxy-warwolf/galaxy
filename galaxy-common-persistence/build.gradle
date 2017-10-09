@@ -1,0 +1,9 @@
+dependencies {
+  compile project(':galaxy-common-core')
+  compile('mysql:mysql-connector-java')
+  compile('com.baomidou:mybatis-plus')
+  compile('com.baomidou:mybatisplus-spring-boot-starter')
+  compile('com.baomidou:mybatisplus-spring-boot-starter')
+  compile('org.springframework.boot:spring-boot-starter-jdbc')
+  compile("org.springframework.boot:spring-boot-starter-cache")
+}

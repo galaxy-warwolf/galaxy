@@ -1,0 +1,22 @@
+apply plugin: "org.springframework.boot"
+apply plugin: "com.gorylenko.gradle-git-properties"
+
+springBoot {
+  mainClass = 'com.thewolf.galaxy.GalaxyApplication'
+  buildInfo()
+}
+
+bootRun {
+  systemProperties = System.properties
+  addResources = true
+  jvmArgs = ['-Xdebug', '-Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=n']
+}
+
+dependencies {
+  compile('org.springframework.boot:spring-boot-starter-actuator')
+  compile('org.springframework.boot:spring-boot-starter-jetty')
+  compile("org.springframework.boot:spring-boot-starter-data-redis")
+  compile('org.hibernate:hibernate-validator')
+  compile('com.alibaba:druid-spring-boot-starter')
+  compile project(":galaxy-sys")
+}

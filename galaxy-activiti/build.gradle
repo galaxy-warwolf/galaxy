@@ -1,0 +1,8 @@
+dependencies {
+  compile "org.activiti:activiti-engine"
+  compile "org.activiti:activiti-spring"
+  compile "org.activiti:activiti-explorer"
+  compile "org.activiti:activiti-modeler"
+  compile "org.activiti:activiti-rest"
+  compile "org.activiti:activiti-diagram-rest"
+}

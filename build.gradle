@@ -1,0 +1,158 @@
+defaultTasks 'clean', 'build'
+
+buildscript {
+  ext {
+    springBootVersion = "1.5.7.RELEASE"
+    dependencyManagementVersion = "1.0.3.RELEASE"
+    gradleGitPropertiesVersion = "1.4.17"
+    licenseVersion = "0.14.0"
+    propDepsVersion = "0.0.9.RELEASE"
+    repoConfig = {
+      mavenLocal()
+      mavenCentral()
+      maven { url "https://plugins.gradle.org/m2/" }
+      maven { url "http://repo.spring.io/plugins-release" }
+    }
+  }
+  repositories repoConfig
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}"
+    classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:${gradleGitPropertiesVersion}"
+    classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:${licenseVersion}"
+    classpath "io.spring.gradle:propdeps-plugin:${propDepsVersion}"
+  }
+}
+
+repositories repoConfig
+
+group = 'com.thewolf'
+version = '0.0.1-SNAPSHOT'
+
+ext {
+  versions = [
+    orika    : "1.5.1",
+    quartz   : "2.3.0",
+    springfox: "2.6.1",
+    janino   : "2.7.8",
+    shiro    : "1.4.0",
+    j2cache  : "1.3.0",
+    guava    : "23.0",
+    jjwt     : "0.7.0",
+    servlet  : "3.1.0",
+    druid    : "1.1.3",
+    mysql    : "6.0.6",
+    mp       : "2.1.2",
+    mpstarter: "1.0.4",
+    activiti : "6.0.0",
+    okhttp   : "3.9.0",
+    zxing    : "3.3.0",
+    velocity : "2.0",
+    io       : "2.5",
+    lang3    : "3.6"
+  ]
+}
+
+apply plugin: 'project-report'
+
+htmlDependencyReport {
+  projects = subprojects
+}
+
+subprojects {
+  buildscript {
+    repositories repoConfig
+  }
+
+  group = rootProject.group
+  version = rootProject.version
+
+  apply plugin: 'java'
+  apply plugin: 'idea'
+  apply plugin: 'eclipse'
+  apply plugin: 'maven-publish'
+  apply plugin: 'io.spring.dependency-management'
+  apply plugin: "com.github.hierynomus.license"
+  apply plugin: 'propdeps'
+  apply plugin: 'propdeps-maven'
+  apply plugin: 'propdeps-idea'
+  apply plugin: 'propdeps-eclipse'
+
+  idea {
+    module {
+      inheritOutputDirs = false
+      outputDir = file("$buildDir/classes/main/")
+    }
+  }
+
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+
+  repositories repoConfig
+
+  configurations.all {
+    exclude group: "commons-logging"
+    exclude module: "slf4j-log4j12"
+    exclude module: "spring-boot-starter-tomcat"
+    exclude group: "com.vaadin"
+    exclude group: "org.vaadin.addons"
+    resolutionStrategy {
+      cacheDynamicVersionsFor 24, 'hours'
+      cacheChangingModulesFor 10, 'minutes'
+    }
+  }
+
+  dependencyManagement {
+    imports {
+      mavenBom "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
+    }
+    dependencies {
+      dependency "io.springfox:springfox-swagger2:${versions.springfox}"
+      dependency "io.springfox:springfox-bean-validators:${versions.springfox}"
+      dependency "io.springfox:springfox-swagger-ui:${versions.springfox}"
+      dependency "com.alibaba:druid-spring-boot-starter:${versions.druid}"
+      dependency "mysql:mysql-connector-java:${versions.mysql}"
+      dependency "com.baomidou:mybatisplus-spring-boot-starter:${versions.mpstarter}"
+      dependency "com.baomidou:mybatis-plus:${versions.mp}"
+      dependency "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+      dependency "com.google.zxing:core:${versions.zxing}"
+      dependency "org.apache.velocity:velocity-engine-core:${versions.velocity}"
+      dependency "org.activiti:activiti-engine:${versions.activiti}"
+      dependency "org.activiti:activiti-spring:${versions.activiti}"
+      dependency "org.activiti:activiti-explorer:${versions.activiti}"
+      dependency "org.activiti:activiti-modeler:${versions.activiti}"
+      dependency "org.activiti:activiti-rest:${versions.activiti}"
+      dependency "org.activiti:activiti-diagram-rest:${versions.activiti}"
+//      dependency "commons-io:commons-io:${versions.io}"
+//      dependency "org.apache.commons:commons-lang3:${versions.lang3}"
+    }
+  }
+
+  dependencies {
+    compile("org.slf4j:slf4j-api")
+    compile("org.projectlombok:lombok")
+    // automatically generate configuration meta-data
+    optional("org.springframework.boot:spring-boot-configuration-processor")
+  }
+
+  task sourceJar(type: Jar) {
+    classifier 'sources'
+    from sourceSets.main.allJava
+  }
+
+  compileJava.dependsOn(processResources)
+
+  license {
+    header rootProject.file('license/header.txt')
+    excludes(["**/*.txt", "**/*.conf", "**/*.properties", "**/*.yml", "**/*.sql"])
+    strictCheck true
+  }
+}
+
+apply from: 'checkstyle.gradle'
+apply from: 'findbugs.gradle'
+apply from: 'jacoco.gradle'
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '4.1'
+}

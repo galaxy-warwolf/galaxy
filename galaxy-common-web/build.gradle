@@ -1,0 +1,10 @@
+dependencies {
+  compile project(":galaxy-common-core")
+  compile("javax.validation:validation-api")
+  compile("com.squareup.okhttp3:okhttp")
+  compile("io.springfox:springfox-bean-validators")
+  compile("io.springfox:springfox-swagger2")
+  compile("io.springfox:springfox-swagger-ui")
+  provided("javax.servlet:javax.servlet-api:${versions.servlet}")
+  compile("org.springframework.boot:spring-boot-starter-web")
+}

@@ -1,0 +1,17 @@
+subprojects {
+
+  apply plugin: 'checkstyle'
+
+  checkstyle {
+    toolVersion = "8.1"
+  }
+
+  tasks.withType(Checkstyle) {
+    configFile = file("${rootDir}/google-checks.xml")
+    ignoreFailures = false
+    reports {
+      xml.enabled false
+      html.enabled true
+    }
+  }
+}
