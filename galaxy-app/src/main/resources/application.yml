@@ -64,6 +64,9 @@ quartz:
 swagger:
   enabled: true
 
+cors:
+  enabled: true
+
 # shiro configuration
 shiro:
   enabled: true
