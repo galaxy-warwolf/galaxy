@@ -1,4 +1,10 @@
-# galaxy #
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Getting Started](#getting-started)
+	- [Prerequisites](#prerequisites)
+- [Build](#build)
+
+<!-- /TOC -->
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-# galaxy-auth #
+## Features
 
 * Shiro rest implementation
 * JWT realm support

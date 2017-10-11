@@ -1,1 +1,0 @@
-# galaxy-common-core #
