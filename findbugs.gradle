@@ -3,6 +3,7 @@ subprojects {
     apply plugin: 'findbugs'
 
     findbugs {
+        toolVersion = '3.0.0'
         effort = 'max'
         excludeFilter = file("${rootDir}/findbugs-excludes.xml")
         ignoreFailures = false

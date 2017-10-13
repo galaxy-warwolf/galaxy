@@ -49,7 +49,8 @@ ext {
     zxing    : "3.3.0",
     velocity : "2.0",
     io       : "2.5",
-    lang3    : "3.6"
+    lang3    : "3.6",
+    findbug  : "3.0.0"
   ]
 }
 
@@ -123,6 +124,7 @@ subprojects {
       dependency "org.activiti:activiti-modeler:${versions.activiti}"
       dependency "org.activiti:activiti-rest:${versions.activiti}"
       dependency "org.activiti:activiti-diagram-rest:${versions.activiti}"
+      dependency "com.google.code.findbugs:annotations:${versions.findbug}"
 //      dependency "commons-io:commons-io:${versions.io}"
 //      dependency "org.apache.commons:commons-lang3:${versions.lang3}"
     }
@@ -131,6 +133,7 @@ subprojects {
   dependencies {
     compile("org.slf4j:slf4j-api")
     compile("org.projectlombok:lombok")
+    compile("com.google.code.findbugs:annotations")
     // automatically generate configuration meta-data
     optional("org.springframework.boot:spring-boot-configuration-processor")
   }

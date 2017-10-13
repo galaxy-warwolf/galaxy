@@ -15,6 +15,7 @@
  */
 package com.thewolf.galaxy.common.web.config;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -26,6 +27,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("cors")
 @Setter
 @Getter
+@SuppressFBWarnings
 public class CorsProperties {
   private String[] urlMappings = {"/**"};
   private String[] allowedOrigins = {"*"};
