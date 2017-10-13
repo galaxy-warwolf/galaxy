@@ -1,3 +1,7 @@
+<h1 align="center">galaxy</h1>
+<h5 align="center">featured EIS solution</h5>
+
+
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Getting Started](#getting-started)
