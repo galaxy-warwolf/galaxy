@@ -17,3 +17,6 @@ build/
 
 # Exclude generated source #
 classes/
+
+# Exclude tree txt file#
+tree.txt

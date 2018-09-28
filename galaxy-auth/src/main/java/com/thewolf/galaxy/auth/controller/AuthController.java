@@ -91,10 +91,10 @@ public class AuthController extends BaseController {
     if (authenticatingUser == null) {
       throw new UserNotFoundException();
     }
-    if (passwordService.passwordsMatch(tokenRequest.getPassword(), authenticatingUser.getPassword()) == false) {
+    if (!passwordService.passwordsMatch(tokenRequest.getPassword(), authenticatingUser.getPassword())) {
       throw new InvalidPasswordException();
     }
-    if (authenticatingUser.isActive() == false) {
+    if (!authenticatingUser.isActive()) {
       throw new UserDisabledException(tokenRequest.getUsername());
     }
     return tokenService.signToken(authenticatingUser);
@@ -119,7 +119,7 @@ public class AuthController extends BaseController {
       if (authenticatingUser == null) {
         throw new UserNotFoundException();
       }
-      if (authenticatingUser.isActive() == false) {
+      if (!authenticatingUser.isActive()) {
         throw new UserDisabledException(authenticatingUser.getUsername());
       }
       return tokenService.signToken(authenticatingUser);

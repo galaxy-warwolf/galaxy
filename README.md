@@ -15,7 +15,7 @@
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
-- [Gradle](https://gradle.org/) (`sdk install gradle 4.1`)
+- [Gradle](https://gradle.org/) (`sdk install gradle 4.3.1`)
 - [mysql](https://www.mysql.com/)
 - [redis](https://redis.io/)
 - [lomok](https://projectlombok.org/) install idea plugin **lombok**
@@ -26,3 +26,9 @@
 ## Build
 
 Run `gradle` for clean build
+
+## Develop
+
+Run `gradle bootRun` to start
+
+open `http://localhost:8080/api/info`

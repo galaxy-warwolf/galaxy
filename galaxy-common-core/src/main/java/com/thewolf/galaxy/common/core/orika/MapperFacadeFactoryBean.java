@@ -32,9 +32,9 @@ import java.util.Map;
 /**
  * Orika mapper facade factory bean.
  */
+@Slf4j
 @SuppressWarnings({"unchecked", "unused"})
 @Component
-@Slf4j
 public class MapperFacadeFactoryBean extends AbstractFactoryBean<MapperFacade>
   implements ApplicationContextAware {
 

@@ -157,5 +157,5 @@ apply from: 'findbugs.gradle'
 apply from: 'jacoco.gradle'
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '4.1'
+  gradleVersion = '4.3.1'
 }
